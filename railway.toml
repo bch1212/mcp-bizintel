@@ -1,0 +1,11 @@
+[build]
+builder = "RAILPACK"
+
+[deploy]
+# Start via python entrypoint — server.py reads PORT from os.getenv,
+# so we don't depend on shell expansion of $PORT.
+startCommand = "python server.py"
+healthcheckPath = "/health"
+healthcheckTimeout = 60
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3

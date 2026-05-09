@@ -1,0 +1,14 @@
+[phases.setup]
+nixPkgs = ["python311", "gcc"]
+
+[phases.install]
+cmds = ["python -m venv /opt/venv", ". /opt/venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt"]
+
+[phases.build]
+cmds = [". /opt/venv/bin/activate && python -c 'import server; print(\"import OK\")'"]
+
+[start]
+cmd = ". /opt/venv/bin/activate && python -m uvicorn server:app --host 0.0.0.0 --port ${PORT:-8000}"
+
+[variables]
+PYTHONUNBUFFERED = "1"
