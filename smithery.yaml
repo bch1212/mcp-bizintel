@@ -1,0 +1,17 @@
+runtime: "remote"
+remoteUrl: "https://mcp-bizintel-production.up.railway.app/mcp"
+configSchema:
+  type: object
+  properties:
+    apiKey:
+      type: string
+      title: BizIntel API Key
+      description: "Free dev key: bizintel-dev-key-001 (20 calls/24h). Pro at https://mcpize.com/bizintel-mcp"
+      default: "bizintel-dev-key-001"
+  required:
+    - apiKey
+exampleConfig:
+  apiKey: "bizintel-dev-key-001"
+headers:
+  - name: "X-API-Key"
+    value: "{{config.apiKey}}"
