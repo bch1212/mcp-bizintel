@@ -1,13 +1,13 @@
-fastapi==0.115.0
-uvicorn[standard]==0.32.0
+fastapi>=0.115,<0.120
+uvicorn[standard]>=0.32,<0.40
 fastmcp>=2.14,<3.0
-aiohttp==3.10.10
+aiohttp>=3.10,<4.0
 httpx>=0.27,<0.29
 pydantic>=2.11.7
-python-dotenv==1.0.1
-beautifulsoup4==4.12.3
+python-dotenv>=1.0
+beautifulsoup4>=4.12
 
 # tests
-pytest==8.3.3
-pytest-asyncio==0.24.0
+pytest>=8.3,<9.0
+pytest-asyncio>=0.24,<1.0
 respx>=0.22
