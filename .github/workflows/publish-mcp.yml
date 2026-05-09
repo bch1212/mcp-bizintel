@@ -1,0 +1,37 @@
+name: Publish to MCP Registry
+
+# Triggers on git tag push (v*) or manual dispatch.
+# Uses GitHub OIDC to authenticate with the Anthropic MCP registry —
+# no PAT needed at registry side. Pattern lifted from bch1212/injectshield.
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  id-token: write   # required for OIDC
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install MCP Publisher
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/').tar.gz" \
+            | tar xz -C /tmp mcp-publisher
+          sudo mv /tmp/mcp-publisher /usr/local/bin/mcp-publisher
+          mcp-publisher --version
+
+      - name: Authenticate via GitHub OIDC
+        env:
+          ACTIONS_ID_TOKEN_REQUEST_URL: ${{ env.ACTIONS_ID_TOKEN_REQUEST_URL }}
+          ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
+        run: mcp-publisher login github-oidc
+
+      - name: Publish server.json
+        run: mcp-publisher publish

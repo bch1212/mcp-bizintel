@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "io.github.bch1212/bizintel",
+  "description": "Real-time local business intelligence MCP: website audits, lead scoring, tech-stack detection, business search.",
+  "status": "active",
+  "repository": {
+    "url": "https://github.com/bch1212/mcp-bizintel",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "websiteUrl": "https://mcp-bizintel-production.up.railway.app",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp-bizintel-production.up.railway.app/mcp",
+      "headers": [
+        {
+          "name": "X-API-Key",
+          "description": "Free dev key bizintel-dev-key-001 (20 calls/24h) or Pro key from https://mcpize.com/bizintel-mcp",
+          "isRequired": true
+        }
+      ]
+    }
+  ]
+}

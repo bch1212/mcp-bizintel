@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bizintel-mcp"
+version = "0.1.0"
+description = "Python client for BizIntel MCP — local business intelligence for AI agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Brett Halverson", email = "brett.halverson@gmail.com" }]
+keywords = ["mcp", "model-context-protocol", "business-intelligence", "lead-scoring", "website-audit", "yelp"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = ["httpx>=0.27"]
+
+[project.urls]
+Homepage = "https://github.com/bch1212/mcp-bizintel"
+Repository = "https://github.com/bch1212/mcp-bizintel"
+Issues = "https://github.com/bch1212/mcp-bizintel/issues"
+Documentation = "https://github.com/bch1212/mcp-bizintel#readme"
+
+[tool.setuptools]
+packages = ["bizintel_mcp"]
+package-dir = { "" = "src" }
