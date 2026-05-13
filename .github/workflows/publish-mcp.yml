@@ -34,4 +34,13 @@ jobs:
         run: mcp-publisher login github-oidc
 
       - name: Publish server.json
-        run: mcp-publisher publish
+        run: |
+          set +e
+          out=$(mcp-publisher publish 2>&1)
+          rc=$?
+          echo "$out"
+          if [ $rc -ne 0 ] && echo "$out" | grep -qiE "duplicate version|already exists|already published"; then
+            echo "Server.json already published — idempotent, treating as success."
+            exit 0
+          fi
+          exit $rc
